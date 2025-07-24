@@ -91,20 +91,20 @@ app.post("/register-institute", async (req, res) => {
                     const class_category = body.class_category;
                     const standard = body.standard;
                     const subjects = body.subjects;
+               
+
+                    mongo.models.school.insertOne({
+                        name,
+                        board,
+                        medium,
+                        class_category,
+                        standard,
+                        subjects
+                    })
+                    res.send("Registered Successfully")
                 }catch(err){
                     res.send(400).send("Incomplete Data")
                 }
-
-                mongo.models.school.insertOne({
-                    name,
-                    board,
-                    medium,
-                    class_category,
-                    standard,
-                    subjects
-                })
-                res.send("Registered Successfully")
-    
                 break;
             
             case "College":
