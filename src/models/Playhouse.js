@@ -4,7 +4,11 @@ const Playhouse = mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    playhouse_type: {
+        type: String,
+        required: true
     }
 })
 
-module.exports = mongoose.model(Playhouse);
+module.exports = mongoose.model("playhouse", Playhouse);
