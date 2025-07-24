@@ -1,6 +1,6 @@
 ﻿const mongoose = require("mongoose");
 
-const ExamCenter = mongoose.Schema({
+const ExamCentre = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,4 +11,4 @@ const ExamCenter = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("exam_center", ExamCenter);
+module.exports = mongoose.model("exam_Centre", ExamCentre);
