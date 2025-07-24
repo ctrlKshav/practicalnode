@@ -16,6 +16,8 @@ app.get("/health", (req, res) => {
     console.log("Working")
     const modelNames = mongo.modelNames()
     console.log(modelNames)
+    // const temp = mongo.models.school.findOne({name: "newSchool"})
+    // console.dir(temp, {depth : 5})
     res.send("Health Checked")
 })
 
@@ -77,35 +79,75 @@ app.get("/institutes/exam-centre", (req, res) => {
 })
 
 app.post("/register-institute", async (req, res) => {
-    const body = await req.body;
-    console.log(body);
-    
-    const institute_name = body.institute
-    switch(institute_name){
-        case "School":
-            console.log("one")
-            break;
+    try{
+        const body = await req.body;
+        console.log(body);
         
-        case "College":
-            console.log("two")
-            break;
+        const institute_name = body.institute
+        const name = body.name;
+        switch(institute_name){
+            case "School":
+                try{
+                    const board = body.board;
+                    const medium = body.medium;
+                    const class_category = body.class_category;
+                    const standard = body.standard;
+                    const subjects = body.subjects;
+                }catch(err){
+                    res.send(400).send("Incomplete Data")
+                }
 
-        case "Playhouse":
-            console.log("three")
-            break;
+                mongo.models.school.insertOne({
+                    name,
+                    board,
+                    medium,
+                    class_category,
+                    standard,
+                    subjects
+                })
+                
+                break;
+            
+            case "College":
+                const degree_type = body.degree;
+                mongo.models.college.insertOne({
+                    name,
+                    degree_type
+                })
+                break;
 
-        case "Exam Centre":
-            console.log("four")
-            break;
+            case "Playhouse":
+                const playhouse_type = body.playhouse_type;
+                mongo.models.playhouse.insertOne({
+                    name,
+                    playhouse_type
+                })
+                break;
+
+            case "Exam Centre":
+                const exam_name = body.exam_name;
+                try{
+                    mongo.models.exam_centre.insertOne({
+                        name,
+                        exam_name
+                    })
+                }catch(err){
+                    console.error(err)
+                }
+                break;
 
 
-        default:
-            res.status(400).send("Incorrect Institute Type")
-            break;
+            default:
+                res.status(400).send("Incorrect Institute Type")
+                break;
+        }
+
+        res.send("Got the Data")
     }
+    catch(err){
+        res.status(500).send("Server Error")
 
-    
-    res.send("Got the Data")
+    }
 })
 
 

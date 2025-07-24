@@ -5,10 +5,10 @@ const ExamCentre = mongoose.Schema({
         type: String,
         required: true
     },
-    exam_type: {
+    exam_name: {
         type: String,
         required: true
     }
 })
 
-module.exports = mongoose.model("exam_Centre", ExamCentre);
+module.exports = mongoose.model("exam_centre", ExamCentre);
