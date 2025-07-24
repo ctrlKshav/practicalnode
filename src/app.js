@@ -25,6 +25,57 @@ app.get("/institutes", (req, res) => {
     })
 })
 
+app.get("/institutes/school", (req, res) => {
+    res.json({
+        institute: "School",
+        boards: ["GSEB", "CBSE", "GTU"],
+        mediums: ["English", "Hindi", "Gujarati"],
+        classes: [
+            {
+                class_category: "Pre-primary",
+                standards: ['LKG', 'HKG'],
+                subjects: ["Drawing", "Arts"]
+            },
+            {
+                class_category: "Primary",
+                standards: ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"],
+                subjects: ["English", "Maths", "Science", "Social Science", "Gujarati", "Hindi", "Music"]
+            },
+            {
+                class_category: "Secondary",
+                standards: ["9th", "10th"],
+                subjects: ["English", "Maths", "Science", "Social Science", "Gujarati", "Hindi", "Sanskrit", "Computer"]
+            },
+            {
+                class_category: "Higher Secondary",
+                standards: ['11th', '12th'],
+                subjects: ["English", "Maths", "Physics", "Chemistry"]
+            },
+        ]
+    })
+})
+
+app.get("/institutes/college", (req, res) => {
+    res.json({
+        institute: "College",
+        degrees: ["Bachelors", "Masters"]
+    })
+})
+
+app.get("/institutes/playhouse", (req, res) => {
+    res.json({
+        institute: "Playhouse",
+        playhouse_type: ["Playhouse", "Nursery"]
+    })
+})
+
+app.get("/institutes/exam-centre", (req, res) => {
+    res.json({
+        institute: "Exam Centre",
+        exam: ["JEE", "NEET", "CUET", "NDA"]
+    })
+})
+
 app.post("/register-institute", async (req, res) => {
     const body = await req.body;
     console.log(body);
