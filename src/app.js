@@ -105,7 +105,8 @@ app.post("/register-institute", async (req, res) => {
                     standard,
                     subjects
                 })
-                
+                res.send("Registered Successfully")
+    
                 break;
             
             case "College":
@@ -114,6 +115,7 @@ app.post("/register-institute", async (req, res) => {
                     name,
                     degree_type
                 })
+                res.send("Registered Successfully")
                 break;
 
             case "Playhouse":
@@ -122,6 +124,7 @@ app.post("/register-institute", async (req, res) => {
                     name,
                     playhouse_type
                 })
+                res.send("Registered Successfully")
                 break;
 
             case "Exam Centre":
@@ -131,6 +134,7 @@ app.post("/register-institute", async (req, res) => {
                         name,
                         exam_name
                     })
+                    res.send("Registered Successfully")
                 }catch(err){
                     console.error(err)
                 }
@@ -142,7 +146,6 @@ app.post("/register-institute", async (req, res) => {
                 break;
         }
 
-        res.send("Got the Data")
     }
     catch(err){
         res.status(500).send("Server Error")
