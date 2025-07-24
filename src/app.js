@@ -7,17 +7,15 @@ const College = require("./models/College");
 const Playhouse = require("./models/Playhouse");
 const ExamCentre = require("./models/ExamCentre");
 
+const logger = require('./utils/logger')
+
 const app = express();
 
 app.use(express.json())
 app.use(cors())
+app.use(logger)
 
 app.get("/health", (req, res) => {
-    console.log("Working")
-    const modelNames = mongo.modelNames()
-    console.log(modelNames)
-    // const temp = mongo.models.school.findOne({name: "newSchool"})
-    // console.dir(temp, {depth : 5})
     res.send("Health Checked")
 })
 
